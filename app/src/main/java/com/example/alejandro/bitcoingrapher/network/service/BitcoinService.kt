@@ -10,7 +10,7 @@ interface BitcoinService {
 
     @GET(Endpoints.MARKET_PRICE)
     fun getBitcoinMarketPrice(
-        @Query(Constants.TIMESPAN) timespan: String,
-        @Query(Constants.ROLLING_AVERAGE) rollingAverage: String
+        @Query(Constants.TIMESPAN_KEY) timespan: String,
+        @Query(Constants.ROLLING_AVERAGE_KEY) rollingAverage: String
     ) : Single<BitcoinDataResponseDto>
 }

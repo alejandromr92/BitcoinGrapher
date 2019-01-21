@@ -6,7 +6,9 @@ interface Constants {
         const val WRITE_TIME_OUT = 60L
         const val CONNECT_TIME_OUT = 60L
 
-        const val TIMESPAN = "4weeks"
-        const val ROLLING_AVERAGE = "8hours"
+        const val TIMESPAN_KEY = "timespan"
+        const val TIMESPAN_VALUE = "4weeks"
+        const val ROLLING_AVERAGE_KEY = "rollingAverage"
+        const val ROLLING_AVERAGE_VALUE = "8hours"
     }
 }
