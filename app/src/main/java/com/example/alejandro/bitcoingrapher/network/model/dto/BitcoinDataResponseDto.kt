@@ -10,5 +10,5 @@ data class BitcoinDataResponseDto (
 
 data class BitcoinDataDto(
     val x: Long,
-    val y: Double
+    val y: Float
 )

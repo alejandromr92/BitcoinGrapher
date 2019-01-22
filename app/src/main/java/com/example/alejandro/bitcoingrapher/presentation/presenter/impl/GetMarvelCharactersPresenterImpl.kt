@@ -13,6 +13,7 @@ class GetMarvelCharactersPresenterImpl(
 
 
     override fun getBitcoinMarketPrice() {
+        view.showProgress()
         val interactor = GetBitcoinMarketPriceDataInteractorImpl(mainThread, threadExecutor)
         interactor.execute(::onBitcoinMarketPriceRetrieved, ::onBitcoinMarketPriceRetrievingError)
     }

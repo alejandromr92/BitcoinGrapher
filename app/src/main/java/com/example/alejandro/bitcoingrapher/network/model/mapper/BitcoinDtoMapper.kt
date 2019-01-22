@@ -1,7 +1,9 @@
 package com.example.alejandro.bitcoingrapher.network.model.mapper
 
+import android.text.format.DateFormat
 import com.example.alejandro.bitcoingrapher.domain.model.BitcoinData
 import com.example.alejandro.bitcoingrapher.network.model.dto.BitcoinDataDto
+import java.util.*
 
 abstract class BitcoinDtoMapper {
     companion object {
@@ -19,7 +21,8 @@ abstract class BitcoinDtoMapper {
 
         fun map(dto: BitcoinDataDto) = BitcoinData(
             dto.x,
-            dto.y
+            dto.y,
+            DateFormat.format("dd MMM" ,Date(dto.x * 1000)).toString()
         )
     }
 }
