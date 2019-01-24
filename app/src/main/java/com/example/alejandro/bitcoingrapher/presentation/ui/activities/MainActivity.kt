@@ -80,6 +80,7 @@ GetBitcoinMarketPriceDataPresenter.View {
         }
 
         bitcoinDataSet = LineDataSet(bitcoinPriceListEntries, "Bitcoin Market Price (USD)")
+        bitcoinDataSet.valueTextSize = 10f
 
         val lineData = LineData(bitcoinDataSet as LineDataSet)
 
