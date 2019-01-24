@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.alejandro.bitcoingrapher.presentation.ui.activities
 
 import android.app.ProgressDialog

@@ -66,7 +66,7 @@ GetBitcoinMarketPriceDataPresenter.View {
         // X axis
         val xAxis =  data_graph.xAxis
         xAxis.position = XAxis.XAxisPosition.BOTTOM
-        xAxis.setValueFormatter { value, axis -> bitcoinPriceDates[value.toInt()] }
+        xAxis.setValueFormatter { value, _ -> bitcoinPriceDates[value.toInt()] }
         xAxis.labelRotationAngle = 40f
         xAxis.setDrawGridLines(false)
         xAxis.granularity = 1f
