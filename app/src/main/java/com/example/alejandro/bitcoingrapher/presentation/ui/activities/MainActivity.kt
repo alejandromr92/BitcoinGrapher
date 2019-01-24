@@ -1,6 +1,7 @@
 package com.example.alejandro.bitcoingrapher.presentation.ui.activities
 
 import android.os.Bundle
+import android.view.View
 import com.example.alejandro.bitcoingrapher.R
 import com.example.alejandro.bitcoingrapher.domain.interactor.impl.GetBitcoinMarketPriceDataInteractorImpl
 import com.example.alejandro.bitcoingrapher.domain.model.BitcoinData
@@ -15,11 +16,12 @@ import com.github.mikephil.charting.data.LineDataSet
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.sdk27.coroutines.onClick
 
 class MainActivity : BaseActivity(),
 GetBitcoinMarketPriceDataPresenter.View {
 
-    private var getBitcoinMarketPriceDataPresenter: GetBitcoinMarketPriceDataPresenter? = null
+    private lateinit var getBitcoinMarketPriceDataPresenter: GetBitcoinMarketPriceDataPresenter
 
     private var bitcoinPriceListEntries: MutableList<Entry> = mutableListOf()
 
@@ -38,15 +40,33 @@ GetBitcoinMarketPriceDataPresenter.View {
         super.initializePresenters()
 
         this.getBitcoinMarketPriceDataPresenter = GetBitcoinMarketPriceDataPresenterImpl(
-            GetBitcoinMarketPriceDataInteractorImpl(Schedulers.newThread(), AndroidSchedulers.mainThread()),
+            GetBitcoinMarketPriceDataInteractorImpl(AndroidSchedulers.mainThread(), Schedulers.newThread()),
             this
         )
+    }
+
+    override fun configViews() {
+        super.configViews()
+
+        error_message.onClick { getBitcoinMarketPriceDataPresenter.getBitcoinMarketPrice() }
     }
 
     override fun loadData() {
         super.loadData()
 
-        this.getBitcoinMarketPriceDataPresenter!!.getBitcoinMarketPrice()
+        this.getBitcoinMarketPriceDataPresenter.getBitcoinMarketPrice()
+    }
+
+    override fun displayContent(success: Boolean) {
+        super.displayContent(success)
+
+        if (success){
+            data_graph.visibility = View.VISIBLE
+            error_message.visibility = View.INVISIBLE
+        } else {
+            data_graph.visibility = View.INVISIBLE
+            error_message.visibility = View.VISIBLE
+        }
     }
 
     private fun setGraphData(bitcoinMarketPriceList: List<BitcoinData>){

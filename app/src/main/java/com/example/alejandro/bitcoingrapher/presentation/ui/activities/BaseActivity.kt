@@ -85,6 +85,13 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
     }
 
     /**
+     * Override in children to display content/error.
+     */
+    protected open fun displayContent(success: Boolean){
+
+    }
+
+    /**
      * Override in children to clear necessary data.
      */
     protected open fun clearData() {
