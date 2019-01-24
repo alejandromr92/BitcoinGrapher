@@ -16,7 +16,11 @@ class GetBitcoinMarketPriceDataPresenterImpl(
     }
 
     private fun onBitcoinMarketPriceRetrieved(bitcoinMarketPriceList: List<BitcoinData>){
-        view.onBitcoinMarketPriceRetrieved(bitcoinMarketPriceList)
+        if (bitcoinMarketPriceList.isNullOrEmpty()){
+            view.onBitcoinMarketPriceRetrievingError()
+        } else {
+            view.onBitcoinMarketPriceRetrieved(bitcoinMarketPriceList)
+        }
     }
 
     private fun onBitcoinMarketPriceRetrievingError(throwable: Throwable){
