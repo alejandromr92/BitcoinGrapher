@@ -104,11 +104,13 @@ GetBitcoinMarketPriceDataPresenter.View {
 
     // Callbacks
     override fun onBitcoinMarketPriceRetrieved(bitcoinMarketPriceList: List<BitcoinData>) {
+        displayContent(true)
         setGraphData(bitcoinMarketPriceList)
         hideProgress()
     }
 
     override fun onBitcoinMarketPriceRetrievingError() {
+        displayContent(false)
         LoggerUtils.logMessage("BITCOIN DATA", "Error")
         hideProgress()
     }
