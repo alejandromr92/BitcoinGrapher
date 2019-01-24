@@ -12,6 +12,9 @@ ext {
     rx_android_version = "2.1.0"
     anko_version = "0.10.8"
     mockito_version = "2.16.0"
+    mockito_kotlin_version = "2.1.0"
+    mockserver_version="3.8.0"
+    commons_version="2.5"
     charts_version = "v3.0.3"
 }
 
@@ -26,6 +29,13 @@ dependencies {
     testImplementation "junit:junit:4.12"
     testImplementation "org.mockito:mockito-core:$mockito_version"
     testImplementation "org.mockito:mockito-inline:$mockito_version"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockito_kotlin_version"
+    testImplementation "commons-io:commons-io:$commons_version"
+
+    //Mockwebserver
+    testImplementation "com.squareup.okhttp3:mockwebserver:$mockserver_version"
+    testImplementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
 
     androidTestImplementation "com.android.support:support-annotations:$support_version"
     androidTestImplementation "com.android.support.test:runner:$runner_version"

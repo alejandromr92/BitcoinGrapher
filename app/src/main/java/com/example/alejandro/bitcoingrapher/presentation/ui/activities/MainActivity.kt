@@ -2,17 +2,16 @@ package com.example.alejandro.bitcoingrapher.presentation.ui.activities
 
 import android.os.Bundle
 import com.example.alejandro.bitcoingrapher.R
+import com.example.alejandro.bitcoingrapher.domain.interactor.impl.GetBitcoinMarketPriceDataInteractorImpl
 import com.example.alejandro.bitcoingrapher.domain.model.BitcoinData
 import com.example.alejandro.bitcoingrapher.presentation.presenter.GetBitcoinMarketPriceDataPresenter
-import com.example.alejandro.bitcoingrapher.presentation.presenter.impl.GetMarvelCharactersPresenterImpl
+import com.example.alejandro.bitcoingrapher.presentation.presenter.impl.GetBitcoinMarketPriceDataPresenterImpl
 import com.example.alejandro.bitcoingrapher.utils.LoggerUtils
 import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.DataSet
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
-import com.github.mikephil.charting.formatter.IAxisValueFormatter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
@@ -38,9 +37,8 @@ GetBitcoinMarketPriceDataPresenter.View {
     override fun initializePresenters() {
         super.initializePresenters()
 
-        this.getBitcoinMarketPriceDataPresenter = GetMarvelCharactersPresenterImpl(
-            Schedulers.newThread(),
-            AndroidSchedulers.mainThread(),
+        this.getBitcoinMarketPriceDataPresenter = GetBitcoinMarketPriceDataPresenterImpl(
+            GetBitcoinMarketPriceDataInteractorImpl(Schedulers.newThread(), AndroidSchedulers.mainThread()),
             this
         )
     }
